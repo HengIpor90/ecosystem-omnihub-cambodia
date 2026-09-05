@@ -12,6 +12,7 @@ import {
     FolderGit2,
     GitBranchPlusIcon,
     LayoutGrid,
+    ReceiptText,
     Tags,
     Truck,
     Warehouse,
@@ -35,12 +36,20 @@ import type { NavItem } from '@/types';
 
 export function AppSidebar() {
     const page = usePage();
-    const dashboardUrl = page.props.currentTeam
-        ? dashboard(page.props.currentTeam.slug)
-        : '/';
-    const productsUrl = page.props.currentTeam
-        ? `/${page.props.currentTeam.slug}/products`
-        : '/';
+
+    const dashboardUrl = page.props.currentTeam? dashboard(page.props.currentTeam.slug): '/';
+    const productsUrl = page.props.currentTeam? `/${page.props.currentTeam.slug}/products`: '/';
+    const beveragesInStockUrl = page.props.currentTeam?`/${page.props.currentTeam.slug}/beverages/in-stock`:'/'; 
+    const beveragesOutStockUrl = page.props.currentTeam?`/${page.props.currentTeam.slug}/beverages/out-of-stock`:'/';
+    const categoryUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/categories`:'/';
+    const inventoryUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/inventory`:'/';
+    const stock_inUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/stock-in`:'/';
+    const stock_outUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/stock-out`:'/';
+    const suppliersUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/suppliers`:'/';
+    const purchase_ordersUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/purchase-orders`:'/';
+    const sales_ordersUrl= page.props.currentTeam?`/${page.props.currentTeam.slug}/sales-orders`:'/';
+    const invoiceHistoryUrl = page.props.currentTeam? `/${page.props.currentTeam.slug}/invoice-history`: '/';
+    const reportsUrl = page.props.currentTeam? `/${page.props.currentTeam.slug}/reports`: '/';
 
     const mainNavItems: NavItem[] = [
         {
@@ -55,52 +64,57 @@ export function AppSidebar() {
         },
         {
             title: 'Beverages In Stock',
-            href: '/beverages/in-stock',
+            href: beveragesInStockUrl,
             icon: CheckCircle2,
         },
         {
             title: 'Beverages Out of Stock',
-            href: '/beverages/out-of-stock',
+            href: beveragesOutStockUrl,
             icon: CircleX,
         },
         {
             title: 'Categories',
-            href: '/categories',
+            href: categoryUrl,
             icon: Tags,
         },
         {
             title: 'Inventory',
-            href: '/inventory',
+            href: inventoryUrl,
             icon: Warehouse,
         },
         {
             title: 'Stock In',
-            href: '/stock-in',
+            href: stock_inUrl,
             icon: ArrowDownToLine,
         },
         {
             title: 'Stock Out',
-            href: '/stock-out',
+            href: stock_outUrl,
             icon: ArrowUpFromLine,
         },
         {
             title: 'Suppliers',
-            href: '/suppliers',
+            href: suppliersUrl,
             icon: Truck,
         },
         {
             title: 'Purchase Orders',
-            href: '/purchase-orders',
+            href: purchase_ordersUrl,
             icon: ClipboardList,
         },
         {
             title: 'Sales Orders',
-            href: '/sales-orders',
+            href: sales_ordersUrl,
             icon: Boxes,
         },
         {
+            title: 'Invoice History',
+            href: invoiceHistoryUrl,
+            icon: ReceiptText,
+        },
+        {
             title: 'Reports',
-            href: '/reports',
+            href: reportsUrl,
             icon: BarChart3,
         },
     ];
