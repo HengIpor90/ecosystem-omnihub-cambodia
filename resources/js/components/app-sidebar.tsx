@@ -6,6 +6,8 @@ import {
     BookOpen,
     Box,
     Boxes,
+    CheckCircle2,
+    CircleX,
     ClipboardList,
     FolderGit2,
     GitBranchPlusIcon,
@@ -36,6 +38,9 @@ export function AppSidebar() {
     const dashboardUrl = page.props.currentTeam
         ? dashboard(page.props.currentTeam.slug)
         : '/';
+    const productsUrl = page.props.currentTeam
+        ? `/${page.props.currentTeam.slug}/products`
+        : '/';
 
     const mainNavItems: NavItem[] = [
         {
@@ -45,8 +50,18 @@ export function AppSidebar() {
         },
         {
             title: 'Products',
-            href: '/products',
+            href: productsUrl,
             icon: Box,
+        },
+        {
+            title: 'Beverages In Stock',
+            href: '/beverages/in-stock',
+            icon: CheckCircle2,
+        },
+        {
+            title: 'Beverages Out of Stock',
+            href: '/beverages/out-of-stock',
+            icon: CircleX,
         },
         {
             title: 'Categories',

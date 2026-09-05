@@ -40,6 +40,14 @@ export type DashboardInvitation = {
         slug: string;
     };
 };
+export type ProductInvitation = {
+    code: string;
+    inviterName: string;
+    team: {
+        name: string;
+        slug: string;
+    };
+};
 
 export type TeamPermissions = {
     canUpdateTeam: boolean;

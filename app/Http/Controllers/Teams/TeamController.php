@@ -57,9 +57,8 @@ class TeamController extends Controller
                 'slug' => $team->slug,
                 'isPersonal' => $team->is_personal,
             ],
-            'members' => $team->members()->get()->map(function (User $member) {
-                /** @var Membership $membership */
-                $membership = $member->getRelation('pivot');
+            'members' => $team->memberships()->get()->map(function (Membership $membership) {
+                $member = $membership->user;
 
                 return [
                     'id' => $member->id,
