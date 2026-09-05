@@ -1,5 +1,19 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import {
+    ArrowDownToLine,
+    ArrowUpFromLine,
+    BarChart3,
+    BookOpen,
+    Box,
+    Boxes,
+    ClipboardList,
+    FolderGit2,
+    GitBranchPlusIcon,
+    LayoutGrid,
+    Tags,
+    Truck,
+    Warehouse,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -29,9 +43,59 @@ export function AppSidebar() {
             href: dashboardUrl,
             icon: LayoutGrid,
         },
+        {
+            title: 'Products',
+            href: '/products',
+            icon: Box,
+        },
+        {
+            title: 'Categories',
+            href: '/categories',
+            icon: Tags,
+        },
+        {
+            title: 'Inventory',
+            href: '/inventory',
+            icon: Warehouse,
+        },
+        {
+            title: 'Stock In',
+            href: '/stock-in',
+            icon: ArrowDownToLine,
+        },
+        {
+            title: 'Stock Out',
+            href: '/stock-out',
+            icon: ArrowUpFromLine,
+        },
+        {
+            title: 'Suppliers',
+            href: '/suppliers',
+            icon: Truck,
+        },
+        {
+            title: 'Purchase Orders',
+            href: '/purchase-orders',
+            icon: ClipboardList,
+        },
+        {
+            title: 'Sales Orders',
+            href: '/sales-orders',
+            icon: Boxes,
+        },
+        {
+            title: 'Reports',
+            href: '/reports',
+            icon: BarChart3,
+        },
     ];
 
     const footerNavItems: NavItem[] = [
+        {
+            title:"services Selles",
+            href:"https://github.com/HengIpor90/ecosystem-omnihub-cambodia.git",
+            icon:GitBranchPlusIcon,
+        },
         {
             title: 'Repository',
             href: 'https://github.com/laravel/react-starter-kit',

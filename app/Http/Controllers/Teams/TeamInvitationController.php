@@ -6,11 +6,11 @@ use App\Enums\TeamRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Teams\CreateTeamInvitationRequest;
 use App\Http\Requests\Teams\RespondToTeamInvitationRequest;
+use App\Models\Membership;
 use App\Models\Team;
 use App\Models\TeamInvitation;
 use App\Notifications\Teams\TeamInvitation as TeamInvitationNotification;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
@@ -62,18 +62,19 @@ class TeamInvitationController extends Controller
     {
         $user = $request->user();
 
-        DB::transaction(function () use ($user, $invitation) {
-            $team = $invitation->team;
+        $team = $invitation->team;
 
-            $team->memberships()->firstOrCreate(
-                ['user_id' => $user->id],
-                ['role' => $invitation->role],
-            );
+        Membership::where('team_id', $team->id)
+            ->where('user_id', $user->id)
+            ->first() ?? Membership::create([
+                'team_id' => $team->id,
+                'user_id' => $user->id,
+                'role' => $invitation->role,
+            ]);
 
-            $invitation->update(['accepted_at' => now()]);
+        $invitation->update(['accepted_at' => now()]);
 
-            $user->switchTeam($team);
-        });
+        $user->switchTeam($team);
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Invitation accepted.')]);
 
